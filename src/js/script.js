@@ -10,7 +10,6 @@ $(document).ready(function() {
             var imagename = data.weather[0].description;
             $("#update-text").text("Last updated : "+moment().format('MMMM Do YYYY, HH:mm a'));
             imagename = imagename.replace(/\s/g, '');
-            console.log(data);
             index++;
             $( ".weather-widget:nth-of-type("+index+")" ).find(".city-name").text(data.name);
             $( ".weather-widget:nth-of-type("+index+")" ).find(".temp").text("Temperature: "+data.main.temp+"C");
