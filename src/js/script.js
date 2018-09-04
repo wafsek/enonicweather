@@ -3,10 +3,9 @@
  */
 $(document).ready(function() {
     var cites = ["London", "Oslo", "Minsk"];
-    function getCitieWeather(index) {
 
-
-        $.getJSON( "https://api.openweathermap.org/data/2.5/weather?q="+cites[index]+"&units=metric&appid=ac3e17cf0bdb7b77a12d75c287c609f7", function( data ) {
+    function getCitieWeather(cityname, index) {
+        $.getJSON( "https://api.openweathermap.org/data/2.5/weather?q="+cityname+"&units=metric&appid=ac3e17cf0bdb7b77a12d75c287c609f7", function( data ) {
             var imagename = data.weather[0].description;
             $("#update-text").text("Last updated : "+moment().format('MMMM Do YYYY, HH:mm a'));
             imagename = imagename.replace(/\s/g, '');
@@ -18,18 +17,28 @@ $(document).ready(function() {
             $( ".weather-widget:nth-of-type("+index+")" ).find(".city-logo").css('background-image', 'url(images/'+imagename+'.jpg)');
 
         });
-
     }
 
-    for (var i in cites) {
-        getCitieWeather(i);
+    function addNewCity(cityname, index){
+        console.log(cityname);
+        $( ".weather-widget" ).first().clone().appendTo( "#weather-widgets" );
+        getCitieWeather(cityname,index);
     }
 
+    function addInitialCities() {
+        getCitieWeather("London",0);
+        for (i = 1; i < cites.length; i++) {
+            addNewCity(cites[i],i);
+        }
+    }
+
+    addInitialCities();
     setInterval(function() {
         for (var i in cites) {
             getCitieWeather(i);
         }
     },  60 * 1000);
+
 });
 
 
