@@ -21,10 +21,8 @@ header {
 .page-wrapper{
     text-align: center;
     margin: auto;
-
     background-color: lightgray;
 }
-
 
 
 .main-content{
@@ -32,6 +30,7 @@ header {
     width: 70%;
     text-align: center;
 }
+
 
 #weather-widgets{
 
@@ -85,7 +84,6 @@ header {
     font-family: Roboto,sans-serif;
     color: white;
 }
-
 
 footer{
     height: 12rem;
