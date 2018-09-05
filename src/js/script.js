@@ -16,8 +16,8 @@ $(document).ready(function() {
 
     /**
      * Returns a image name with given weather id.
-     * @param code
-     * @returns {string}
+     * @param code - The weather id.
+     * @returns {string} - The name of the image.
      */
     function getWeatherImageName(code) {
         for(var key in image_relations) {
@@ -68,15 +68,23 @@ $(document).ready(function() {
         }
     }
 
+    /**
+     * Updates the weather for all the cities
+     */
+    function updateWeather(){
+        for (var i in cites) {
+            getCitisWeather(cites[i],i);
+        }
+    }
+
+
     addInitialCities();
 
     /**
      * Updates the weather for all the cities every minute.
      */
     setInterval(function() {
-        for (var i in cites) {
-            getCitisWeather(cites[i],i);
-        }
+        updateWeather();
     },  60 * 1000);
 
 });
