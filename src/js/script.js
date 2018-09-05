@@ -3,7 +3,28 @@
  */
 $(document).ready(function() {
     var cites = ["London", "Oslo", "Minsk"];
+    var image_relations = {
+        "clearsky": [800],
+        "brokenclouds": [802,802,804],
+        "fewclouds": [801],
+        "mist": [701,711,741],
+        "rain": [500,501,502,503,504,511,520,521,522,531],
+        "snow": [600,601,602,620,621,622],
+        "thunderstorm": [200, 201, 202, 210, 211, 212, 221,230, 231, 232]
+    };
 
+    /**
+     * Returns a image name with given weather id.
+     * @param code
+     * @returns {string}
+     */
+    function getWeatherImageName(code) {
+        for(var key in image_relations) {
+            if(image_relations[key].includes(code)) {
+                return key+".jpg"
+            }
+        }
+    }
 
     /**
      * Gets the weather for the given city name and edits the dom.
@@ -12,16 +33,18 @@ $(document).ready(function() {
      */
     function getCitisWeather(cityname, index) {
         $.getJSON( "https://api.openweathermap.org/data/2.5/weather?q="+cityname+"&units=metric&appid=ac3e17cf0bdb7b77a12d75c287c609f7", function( data ) {
-            var imagename = data.weather[0].description;
+            var imageId = data.weather[0].id;
+            var imagename = getWeatherImageName(imageId);
             $(".update-text").text("Last updated : "+moment().format('MMMM Do YYYY, HH:mm a'));
-            imagename = imagename.replace(/\s/g, '');
+            //imagename = imagename.replace(/\s/g, '');
             index++;
             $( ".weather-widget:nth-of-type("+index+")" ).find(".city-name").text(data.name);
             $( ".weather-widget:nth-of-type("+index+")" ).find(".temp").text("Temperature: "+data.main.temp+"C");
             $( ".weather-widget:nth-of-type("+index+")" ).find(".description").text(data.weather[0].description);
-            $( ".weather-widget:nth-of-type("+index+")" ).find(".city-logo").css('background-image', 'url(images/'+imagename+'.jpg)');
+            $( ".weather-widget:nth-of-type("+index+")" ).find(".city-logo").css('background-image', 'url(images/'+imagename+')');
         });
     }
+
 
     /**
      * Adds a new city.
@@ -29,7 +52,6 @@ $(document).ready(function() {
      * @param index - The index of the city. NOTE. The index HAS to be the last one and CANNOT be any other.
      */
     function addNewCity(cityname, index){
-        console.log(cityname);
         $( ".weather-widget" ).first().clone().appendTo( ".weather-widgets" );
         getCitisWeather(cityname,index);
     }
@@ -45,7 +67,6 @@ $(document).ready(function() {
     }
 
     addInitialCities();
-
     /**
      * Updates the weather for all the cities every minute.
      */
