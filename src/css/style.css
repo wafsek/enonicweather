@@ -13,8 +13,11 @@ p{
 }
 
 .update-box, .add-city-box{
-    background-color: #767676;
     padding: .5rem;
+}
+
+.update-box{
+    background-color: #767676;
 }
 
 .update-box, .add-city-box, .city-name{
@@ -22,13 +25,32 @@ p{
     margin: auto;
 }
 
+.add-city-box{
+    background-color: gray;
+    margin: 0;
+    opacity:0.5;
+}
+
+.add-city-box:hover
+{
+    opacity:1;
+    transition:all 0.8s ease;
+}
+
 .update-text, .add-city-text{
     color: white;
 }
 
 .add-city-text{
+    display: inline-block;
     font-weight: bold;
-    color: #3adb76;
+    color: chartreuse;
+}
+
+
+#add-image{
+    height: 100%;
+    display: inline-block;
 }
 
 ul{

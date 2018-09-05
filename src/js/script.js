@@ -48,12 +48,22 @@ $(document).ready(function() {
     }
 
 
+
+    function cityFound(cityname){
+        var yourUrl = "https://api.openweathermap.org/data/2.5/weather?q="+cityname+"&units=metric&appid=ac3e17cf0bdb7b77a12d75c287c609f7";
+        var Httpreq = new XMLHttpRequest();
+        Httpreq.open("GET",yourUrl,false);
+        Httpreq.send(null);
+        return Httpreq.status != 404;
+    }
+
     /**
      * Adds a new city.
      * @param cityname - The name of the city to be added.
-     * @param index - The index of the city. NOTE. The index HAS to be the last one and CANNOT be any other.
      */
-    function addNewCity(cityname, index){
+    function addNewCity(cityname){
+        var index = cites.length;
+        cites.push(cityname);
         $( ".weather-widget" ).first().clone().appendTo( ".weather-widgets" );
         getCitisWeather(cityname,index);
     }
@@ -64,7 +74,8 @@ $(document).ready(function() {
     function addInitialCities() {
         getCitisWeather("London",0);
         for (i = 1; i < cites.length; i++) {
-            addNewCity(cites[i],i);
+            $( ".weather-widget" ).first().clone().appendTo( ".weather-widgets" );
+            getCitisWeather(cites[i],i);
         }
     }
 
@@ -79,6 +90,15 @@ $(document).ready(function() {
 
 
     addInitialCities();
+
+    $( "#add-city" ).click(function() {
+        var cityname = prompt("Please enter the name of the city");
+        if (!cityFound(cityname)){
+            alert("The city you typed in was not found");
+        }else{
+            addNewCity(cityname);
+        }
+    });
 
     /**
      * Updates the weather for all the cities every minute.
