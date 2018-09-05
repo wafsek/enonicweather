@@ -18,6 +18,8 @@ header {
     width: 70%;
 }
 
+
+
 .page-wrapper{
     text-align: center;
     margin: auto;
@@ -49,6 +51,19 @@ header {
     line-height: 3rem;
     color: white;
     font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+button{
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-weight: bold;
+    color: forestgreen;
+    border-style: none;
+    height: 4rem;
+    background-color: #505050;
+    font-size: 1.4rem;
 }
 
 .weather-widget{
