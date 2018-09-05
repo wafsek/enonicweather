@@ -5,13 +5,14 @@ $(document).ready(function() {
     var cites = ["London", "Oslo", "Minsk"];
     var image_relations = {
         "clearsky": [800],
-        "brokenclouds": [802,802,804],
+        "brokenclouds": [802,802,803,804],
         "fewclouds": [801],
         "mist": [701,711,741],
         "rain": [500,501,502,503,504,511,520,521,522,531],
         "snow": [600,601,602,620,621,622],
         "thunderstorm": [200, 201, 202, 210, 211, 212, 221,230, 231, 232]
     };
+
 
     /**
      * Returns a image name with given weather id.
@@ -25,6 +26,7 @@ $(document).ready(function() {
             }
         }
     }
+
 
     /**
      * Gets the weather for the given city name and edits the dom.
@@ -67,11 +69,11 @@ $(document).ready(function() {
     }
 
     addInitialCities();
+
     /**
      * Updates the weather for all the cities every minute.
      */
     setInterval(function() {
-        console.log("updated");
         for (var i in cites) {
             getCitisWeather(cites[i],i);
         }
