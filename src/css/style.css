@@ -1,76 +1,44 @@
-body{
-    padding: 0;
-    margin: 0;
+header{
+    color: #d26c22;
+    background-color: #353432;
 }
 
 p{
-    margin: 0;
-}
-
-header {
-    height: 5rem;
-    background-color: #505050;
-    margin-bottom: 5rem;
-}
-
-.header-content{
     margin: auto;
-    width: 70%;
 }
-
-
-
-.page-wrapper{
-    text-align: center;
-    margin: auto;
-    background-color: lightgray;
-}
-
 
 .main-content{
-    margin: auto;
-    width: 70%;
+    background-color: #E8E8E8;
+    height: 100%;
+}
+
+.update-box, .add-city-box{
+    background-color: #767676;
+    padding: .5rem;
+}
+
+.update-box, .add-city-box, .city-name{
     text-align: center;
-}
-
-
-#weather-widgets{
-
     margin: auto;
-    text-align: center;
-    padding: 7rem;
 }
 
-.update-box{
-    height: 3rem;
-    background-color: #505050;
-}
-
-#update-text{
-    font-family: Roboto,sans-serif;
-    line-height: 3rem;
+.update-text, .add-city-text{
     color: white;
-    font-weight: 500;
-    margin-bottom: 1rem;
 }
 
-button{
-    padding: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+.add-city-text{
     font-weight: bold;
-    color: forestgreen;
-    border-style: none;
-    height: 4rem;
-    background-color: #505050;
-    font-size: 1.4rem;
+    color: #3adb76;
+}
+
+ul{
+    list-style: none;
 }
 
 .weather-widget{
     padding-top: 0;
     margin: 2.2rem;
     background-color: #505050;
-    height: 15rem;
     width: 18rem;
     display: inline-block;
 }
@@ -98,14 +66,4 @@ button{
 .weather-info{
     font-family: Roboto,sans-serif;
     color: white;
-}
-
-footer{
-    height: 12rem;
-    background-color: #505050;
-}
-
-.footer-content{
-    margin: auto;
-    width: 70%;
 }

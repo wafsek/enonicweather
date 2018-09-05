@@ -13,7 +13,7 @@ $(document).ready(function() {
     function getCitisWeather(cityname, index) {
         $.getJSON( "https://api.openweathermap.org/data/2.5/weather?q="+cityname+"&units=metric&appid=ac3e17cf0bdb7b77a12d75c287c609f7", function( data ) {
             var imagename = data.weather[0].description;
-            $("#update-text").text("Last updated : "+moment().format('MMMM Do YYYY, HH:mm a'));
+            $(".update-text").text("Last updated : "+moment().format('MMMM Do YYYY, HH:mm a'));
             imagename = imagename.replace(/\s/g, '');
             index++;
             $( ".weather-widget:nth-of-type("+index+")" ).find(".city-name").text(data.name);
@@ -30,7 +30,7 @@ $(document).ready(function() {
      */
     function addNewCity(cityname, index){
         console.log(cityname);
-        $( ".weather-widget" ).first().clone().appendTo( "#weather-widgets" );
+        $( ".weather-widget" ).first().clone().appendTo( ".weather-widgets" );
         getCitisWeather(cityname,index);
     }
 
@@ -50,8 +50,9 @@ $(document).ready(function() {
      * Updates the weather for all the cities every minute.
      */
     setInterval(function() {
+        console.log("updated");
         for (var i in cites) {
-            getCitieWeather(cites[i],i);
+            getCitisWeather(cites[i],i);
         }
     },  60 * 1000);
 
